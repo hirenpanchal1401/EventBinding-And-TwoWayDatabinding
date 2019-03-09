@@ -1,0 +1,98 @@
+<div class="jumbotron">
+    <h3>Structural Directive Example</h3>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            City
+                        </th>
+                        <th>
+                            Mark
+                        </th>
+                        <th>
+                            Hobbies
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let student of studentList">
+                        <td>{{student.sid}}</td>
+                        <td>{{student.sname}}</td>
+                        <td>{{student.scity}}</td>
+                        <td>
+                           <p *ngIf="student.smarks>=35; else elseBlock">
+                               <span style="color:green">{{student.smarks}}</span>
+                           </p> 
+                           <ng-template #elseBlock>
+                                <span style="color:red">{{student.smarks}}</span>
+                           </ng-template>
+                        </td>
+                        <td>
+                          <!-- <p *ngIf="student.hobbies.length>=4">User Hobby has ({{student.hobbies.length}}) count</p>   -->
+                            
+                            <ul>
+                                <li *ngFor="let s of student.hobbies">
+                                    {{s}}
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="jumbotron">
+    <h3>Event Example</h3>
+</div>
+
+<div class="col-md-12">
+
+    <input type="text" placeholder="First Name" #fname  value="{{firstname}}">
+    <!-- (keyup)="show($event.target)" -->
+    <input type="text" placeholder="Last Name" #lname value="{{lastname}}">
+    <input type="button" value="Add User Info" (click)="addUserInfo(fname.value,lname.value)">
+
+<br/>
+<br>
+
+<select (change)="drp($event.target.value)">
+    <option>Select</option>
+    <option *ngFor="let kuchbi of username"> {{kuchbi}}</option>
+</select>
+
+</div>
+<br/>
+<br/>
+
+<input type="file" (change)="upload($event.target)"> <button (click)="uploadds($event.target)">Upload</button>
+
+<br/>
+
+<img src="{{userphoto}}" alt="">
+<br/>
+<br>
+
+<br/>
+<br>
+<div class="jumbotron">
+        <h3>2 way databinding Example</h3>
+    </div>
+<input type="text" placeholder="enter name" [(ngModel)]="uname">
+<br/>
+{{uname}}
+
+<br/>
+<br>
+<br/>
+<br>
